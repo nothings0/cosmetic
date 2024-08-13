@@ -1752,7 +1752,7 @@ var Dropdown = function ($$$1) {
     }; // eslint-disable-next-line complexity
 
 
-    Dropdown._dataApiKeydownHandler = function _dataApiKeydownHandler(event) {
+    Dropdown._dataApiKeydowntbngocdler = function _dataApiKeydowntbngocdler(event) {
       // If not input/textarea:
       //  - And not a key in REGEXP_KEYDOWN => not a dropdown command
       // If input/textarea:
@@ -1835,7 +1835,7 @@ var Dropdown = function ($$$1) {
    */
 
 
-  $$$1(document).on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, Dropdown._dataApiKeydownHandler).on(Event.KEYDOWN_DATA_API, Selector.MENU, Dropdown._dataApiKeydownHandler).on(Event.CLICK_DATA_API + " " + Event.KEYUP_DATA_API, Dropdown._clearMenus).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
+  $$$1(document).on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, Dropdown._dataApiKeydowntbngocdler).on(Event.KEYDOWN_DATA_API, Selector.MENU, Dropdown._dataApiKeydowntbngocdler).on(Event.CLICK_DATA_API + " " + Event.KEYUP_DATA_API, Dropdown._clearMenus).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
     event.preventDefault();
     event.stopPropagation();
 

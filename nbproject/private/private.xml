@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Study/cosmetic/web/component/header.jsp</file>
-            <file>file:/C:/Study/cosmetic/src/java/ntbngoc/data/impl/UserImpl.java</file>
-            <file>file:/C:/Study/cosmetic/web/views/register.jsp</file>
-            <file>file:/C:/Study/cosmetic/src/java/ntbngoc/data/web/RegisterServlet.java</file>
-            <file>file:/C:/Study/cosmetic/web/views/admin.jsp</file>
+            <file>file:/C:/Study_document/cosmetic/src/java/ntbngoc/data/impl/ProductImpl.java</file>
+            <file>file:/C:/Study_document/cosmetic/web/views/product.jsp</file>
+            <file>file:/C:/Study_document/cosmetic/web/component/product-main.jsp</file>
+            <file>file:/C:/Study_document/cosmetic/src/java/ntbngoc/data/web/ProductController.java</file>
         </group>
     </open-files>
 </project-private>

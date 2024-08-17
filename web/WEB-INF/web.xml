@@ -13,12 +13,12 @@
         <servlet-class>ntbngoc.data.web.ProductController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ProductDetailController</servlet-name>
-        <servlet-class>ntbngoc.data.web.ProductDetailController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>ntbngoc.data.web.AdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StoreController</servlet-name>
+        <servlet-class>ntbngoc.data.web.StoreController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -35,5 +35,9 @@
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StoreController</servlet-name>
+        <url-pattern>/store</url-pattern>
     </servlet-mapping>
 </web-app>

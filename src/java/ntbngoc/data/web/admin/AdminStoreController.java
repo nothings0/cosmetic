@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package ntbngoc.data.web;
+package ntbngoc.data.web.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,11 +13,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import ntbngoc.data.dao.Database;
-import ntbngoc.data.model.Category;
 import ntbngoc.data.model.Product;
 
-@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
-public class HomeServlet extends HttpServlet {
+/**
+ *
+ * @author pv
+ */
+@WebServlet(name = "AdminStoreController", urlPatterns = {"/admin/store"})
+public class AdminStoreController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +39,10 @@ public class HomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeServlet</title>");
+            out.println("<title>Servlet AdminStoreController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HomeServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AdminStoreController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,13 +61,8 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Product> lstBestSeller = Database.getProductDao().findRandom(16);
-        List<Product> lstTrending = Database.getProductDao().findRandom(16);
-        List<Category> lstCategory = Database.getCategoryDAO().findAll();
         request.setAttribute("lstBestSeller", lstBestSeller);
-        request.setAttribute("lstTrending", lstTrending);
-        request.setAttribute("lstCategory", lstCategory);
-        request.setAttribute("title", "Home Page");
-        request.getRequestDispatcher("./views/home.jsp").include(request, response);
+        request.getRequestDispatcher("../views/admin-store.jsp").include(request, response);
     }
 
     /**

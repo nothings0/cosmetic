@@ -77,16 +77,17 @@ public class ProductController extends HttpServlet {
         request.setAttribute("listCategory", listCategory);
         List<Product> listProduct = Database.getProductDao().findAll();
         request.setAttribute("listProduct", listProduct);
-        request.getRequestDispatcher("./views/product.jsp").forward(request, response);
+        request.getRequestDispatcher("./views/store.jsp").forward(request, response);
     }
     
     private void getProductDetails(HttpServletRequest request, HttpServletResponse response, int productId) throws ServletException, IOException {
 
         Product product = Database.getProductDao().find(productId);
-        
+        List<Product> relateProduct = Database.getProductDao().findRandom(8);
         request.setAttribute("product", product);
+        request.setAttribute("relateProduct", relateProduct);
         
-        request.getRequestDispatcher("./views/product-detail.jsp").forward(request, response);
+        request.getRequestDispatcher("./views/product.jsp").forward(request, response);
     }
 
     @Override

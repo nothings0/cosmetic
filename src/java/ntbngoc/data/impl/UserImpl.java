@@ -20,7 +20,7 @@ import ntbngoc.utils.API;
  */
 public class UserImpl implements UserDao {
     Connection con = MysqlDriver.getConnection();
-
+    
     @Override
     public User findUser(String emailphone, String password){
         String sql;
@@ -60,14 +60,27 @@ public class UserImpl implements UserDao {
         return null;
     }
     
+//    @Override
+//    public void insertUser(String name, String email, String phone, String password){
+//        String sql="insert into users(name, email, phone, password, role) values('"+name+"','"+email;
+//        sql = sql + "','"+phone+"','"+password+"','')";
+//        try{
+//            PreparedStatement sttm = con.prepareStatement(sql);
+//            sttm.execute();
+//        }catch(SQLException e){
+//            e.printStackTrace();
+//        }
+//    }
+
     @Override
-    public void insertUser(String name, String email, String phone, String password){
-        String sql="insert into users(name, email, phone, password, role) values('"+name+"','"+email;
-        sql = sql + "','"+phone+"','"+password+"','')";
-        try{
+    public void insertUser(String email, String password) {
+        String sql = "insert into users(email, password) values(?, ?)";
+        try {
             PreparedStatement sttm = con.prepareStatement(sql);
+            sttm.setString(1, email); // Set the email to the first placeholder
+            sttm.setString(2, API.getMd5(password)); // Set the hashed password to the second placeholder
             sttm.execute();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

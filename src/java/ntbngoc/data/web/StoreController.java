@@ -7,7 +7,6 @@ package ntbngoc.data.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,8 +15,11 @@ import ntbngoc.data.dao.Database;
 import ntbngoc.data.model.Category;
 import ntbngoc.data.model.Product;
 
-@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
-public class HomeServlet extends HttpServlet {
+/**
+ *
+ * @author pv
+ */
+public class StoreController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +38,10 @@ public class HomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeServlet</title>");
+            out.println("<title>Servlet StoreController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HomeServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet StoreController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,14 +59,20 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> lstBestSeller = Database.getProductDao().findRandom(16);
-        List<Product> lstTrending = Database.getProductDao().findRandom(16);
+        List<Product> lstBestSeller = Database.getProductDao().findRandom(4);
+        List<Product> lstTrending = Database.getProductDao().findRandom(4);
+        List<Product> lstNewArrivals = Database.getProductDao().findRandom(4);
+        List<Product> lstNewProduct = Database.getProductDao().findRandom(16);
+        List<Product> lstDealOfDay = Database.getProductDao().findRandom(2);
         List<Category> lstCategory = Database.getCategoryDAO().findAll();
+        request.setAttribute("lstCategory", lstCategory);
         request.setAttribute("lstBestSeller", lstBestSeller);
         request.setAttribute("lstTrending", lstTrending);
-        request.setAttribute("lstCategory", lstCategory);
-        request.setAttribute("title", "Home Page");
-        request.getRequestDispatcher("./views/home.jsp").include(request, response);
+        request.setAttribute("lstNewArrivals", lstNewArrivals);
+        request.setAttribute("lstNewProduct", lstNewProduct);
+        request.setAttribute("lstDealOfDay", lstDealOfDay);
+        request.setAttribute("title", "Store - Cosmetic");
+        request.getRequestDispatcher("./views/store.jsp").include(request, response);
     }
 
     /**
@@ -78,7 +86,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     /**

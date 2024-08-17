@@ -13,5 +13,6 @@ import ntbngoc.data.model.User;
 public interface UserDao {
     public User findUser(String emailphone, String password);
     public User findUser(String emailphone);
-    public void insertUser(String name, String email, String phone, String password);
+//    public void insertUser(String name, String email, String phone, String password);
+    public void insertUser(String email, String password);
 }

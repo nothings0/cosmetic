@@ -2,17 +2,40 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
-const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+//const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+//
+//allSideMenu.forEach(item=> {
+//	const li = item.parentElement;
+//
+//	item.addEventListener('click', function () {
+//		allSideMenu.forEach(i=> {
+//			i.parentElement.classList.remove('active');
+//		})
+//		li.classList.add('active');
+//	})
+//});
 
-allSideMenu.forEach(item=> {
-	const li = item.parentElement;
 
-	item.addEventListener('click', function () {
-		allSideMenu.forEach(i=> {
-			i.parentElement.classList.remove('active');
-		})
-		li.classList.add('active');
-	})
+// Lấy các phần tử cần sử dụng
+const addProductBtn = document.getElementById('addProductBtn');
+const popup = document.getElementById('popup');
+const closeBtn = document.querySelector('.close-btn');
+
+// Mở popup khi nhấn nút "Thêm Product"
+addProductBtn.addEventListener('click', function() {
+    popup.style.display = 'block';
+});
+
+// Đóng popup khi nhấn vào nút close (x)
+closeBtn.addEventListener('click', function() {
+    popup.style.display = 'none';
+});
+
+// Đóng popup khi nhấn bên ngoài nội dung popup
+window.addEventListener('click', function(event) {
+    if (event.target == popup) {
+        popup.style.display = 'none';
+    }
 });
 
 

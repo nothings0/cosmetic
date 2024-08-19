@@ -8,7 +8,7 @@ import java.sql.SQLException;
  */
 public class User {
     int id;
-    String name, email, phone, password, role;
+    String name, email, phone, password, role, address;
 
     public User(ResultSet rs) throws SQLException {
         this.id = rs.getInt("id");
@@ -28,8 +28,20 @@ public class User {
         this.role = role;
     }
 
+    public User() {
+        
+    }
+
     public int getId() {
         return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setId(int id) {

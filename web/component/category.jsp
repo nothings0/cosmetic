@@ -11,11 +11,8 @@
           <div class="category-content-box">
             <div class="category-content-flex">
               <h3 class="category-item-title">${category.name}</h3>
-
-              <p class="category-item-amount">(53)</p>
+              <a href="store?category=${category.id}" class="category-btn">Show all</a>
             </div>
-
-            <a href="#" class="category-btn">Show all</a>
           </div>
         </div>
           </c:forEach>

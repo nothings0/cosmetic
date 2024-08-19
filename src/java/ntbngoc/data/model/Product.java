@@ -10,18 +10,48 @@ public class Product {
     int id_category;
     String name;
     String image;
+    String description;
+    float discount;
+    int sold;
     double price;
     int quantity;
     boolean status;
 
-    public Product(int id, int id_category, String name, String image, double price, int quantity, boolean status) {
+    public Product(String name, String image, String description, float discount, double price, int id_category, int quantity) {
+        this.id_category = id_category;
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.discount = discount;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public Product() {
+        
+    }
+
+    public Product(int id, String name, String image, String description, float discount, double price, int id_category) {
+        this.id_category = id_category;
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.discount = discount;
+        this.price = price;
+        this.quantity = quantity;
+        this.id = id;
+    }
+
+    public Product(int id, String name, String image, String description, float discount, double price, int id_category, int sold, int quantity) {
         this.id = id;
         this.id_category = id_category;
         this.name = name;
         this.image = image;
+        this.description = description;
+        this.discount = discount;
+        this.sold = sold;
         this.price = price;
         this.quantity = quantity;
-        this.status = status;
     }
 
     public int getId() {
@@ -56,6 +86,32 @@ public class Product {
         this.image = image;
     }
 
+    
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    public int getSold() {
+        return sold;
+    }
+
+    public void setSold(int sold) {
+        this.sold = sold;
+    }
+    
     public double getPrice() {
         return price;
     }

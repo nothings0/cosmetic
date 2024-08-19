@@ -6,6 +6,8 @@ package ntbngoc.utils;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import ntbngoc.data.model.Category;
 
 public class API {
     public static String getName(String fullname) {
@@ -41,6 +43,34 @@ public class API {
         // For specifying wrong message digest algorithms
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
+        }
+    }
+    
+    public static String getCategoryNameById(List<Category> categories, int categoryId) {
+        for (Category category : categories) {
+            if (category.getId() == categoryId) {
+                return category.getName();
+            }
+        }
+        return "Beauty"; // Hoặc trả về null nếu bạn không muốn thông báo lỗi
+    }
+    
+    public static double discountedPrice(double price, float discount) {
+        // Kiểm tra xem tỷ lệ giảm giá có hợp lệ không (0-100)
+        if (discount < 0 || discount > 100) {
+            throw new IllegalArgumentException("Discount must be between 0 and 100.");
+        }
+
+        // Tính giá sau giảm giá
+        double discountAmount = (discount / 100) * price;
+        return Math.ceil(price - discountAmount);
+    }
+    
+    public static String getShortName(String productName) {
+        if (productName.length() > 50) {
+            return productName.substring(0, 50) + "...";
+        } else {
+            return productName;
         }
     }
 }

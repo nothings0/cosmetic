@@ -5,6 +5,7 @@
 package ntbngoc.data.dao;
 
 import ntbngoc.data.impl.CategoryImpl;
+import ntbngoc.data.impl.OrderImpl;
 import ntbngoc.data.impl.ProductImpl;
 import ntbngoc.data.impl.UserImpl;
 
@@ -23,5 +24,9 @@ public class Database {
     
     public static UserDao getUserDao() {
         return new UserImpl();
+    }
+    
+    public static OrderDao getOrderDao() {
+        return new OrderImpl();
     }
 }

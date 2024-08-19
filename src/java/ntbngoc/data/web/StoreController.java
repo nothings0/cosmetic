@@ -20,7 +20,7 @@ import ntbngoc.data.model.Product;
  * @author pv
  */
 public class StoreController extends HttpServlet {
-
+    private static final int PRODUCTS_PER_PAGE = 15;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -59,18 +59,34 @@ public class StoreController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> lstBestSeller = Database.getProductDao().findRandom(4);
-        List<Product> lstTrending = Database.getProductDao().findRandom(4);
-        List<Product> lstNewArrivals = Database.getProductDao().findRandom(4);
-        List<Product> lstNewProduct = Database.getProductDao().findRandom(16);
-        List<Product> lstDealOfDay = Database.getProductDao().findRandom(2);
+        
+        String categoryId = request.getParameter("category");
+        
+        if(categoryId != null) {
+            int cateId = Integer.parseInt(categoryId);
+            List<Product> lstProductByCategory = Database.getProductDao().findByCategory(cateId);
+            request.setAttribute("lstProductByCategory", lstProductByCategory);
+            request.setAttribute("categoryId", categoryId);
+        }else{
+            int page = 1;
+            if (request.getParameter("page") != null) {
+                page = Integer.parseInt(request.getParameter("page"));
+            }
+
+            int offset = (page - 1) * PRODUCTS_PER_PAGE;
+
+            List<Product> products = Database.getProductDao().getProducts(offset, PRODUCTS_PER_PAGE);
+
+            request.setAttribute("products", products);
+            request.setAttribute("currentPage", page);
+
+            // Tổng số trang dựa trên tổng số sản phẩm
+            int totalProducts = Database.getProductDao().getTotalProducts();
+            int totalPages = (int) Math.ceil(totalProducts / (double) PRODUCTS_PER_PAGE);
+            request.setAttribute("totalPages", totalPages);
+        }
         List<Category> lstCategory = Database.getCategoryDAO().findAll();
         request.setAttribute("lstCategory", lstCategory);
-        request.setAttribute("lstBestSeller", lstBestSeller);
-        request.setAttribute("lstTrending", lstTrending);
-        request.setAttribute("lstNewArrivals", lstNewArrivals);
-        request.setAttribute("lstNewProduct", lstNewProduct);
-        request.setAttribute("lstDealOfDay", lstDealOfDay);
         request.setAttribute("title", "Store - Cosmetic");
         request.getRequestDispatcher("./views/store.jsp").include(request, response);
     }

@@ -20,6 +20,26 @@
         <servlet-name>StoreController</servlet-name>
         <servlet-class>ntbngoc.data.web.StoreController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>ntbngoc.data.web.CartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminStoreController</servlet-name>
+        <servlet-class>ntbngoc.data.web.AdminStoreController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <servlet-class>ntbngoc.data.web.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>ntbngoc.data.web.CheckoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InvoiceController</servlet-name>
+        <servlet-class>ntbngoc.data.web.InvoiceController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -39,5 +59,25 @@
     <servlet-mapping>
         <servlet-name>StoreController</servlet-name>
         <url-pattern>/store</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminStoreController</servlet-name>
+        <url-pattern>/admin/store</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <url-pattern>/addtocart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InvoiceController</servlet-name>
+        <url-pattern>/admin/invoice</url-pattern>
     </servlet-mapping>
 </web-app>

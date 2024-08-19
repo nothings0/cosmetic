@@ -5,38 +5,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<!-- My CSS -->
+
 	<link rel="stylesheet" href="./style/admin.css">
 
 	<title>Admin Dashboard - Cosmetic</title>
 </head>
 <body>
-	<!-- SIDEBAR -->
         <c:import url="./component/sidebar.jsp" />
-	<!-- SIDEBAR -->
 
-	<!-- CONTENT -->
 	<section id="content">
-            <!-- NAVBAR -->
             <c:import url="./component/admin-nav.jsp" />
-            <!-- NAVBAR -->
-
-            <!-- MAIN -->
             <main>
                 <div class="head-title">
                     <div class="left">
                         <h1>Dashboard</h1>
-                        <ul class="breadcrumb">
-                                <li>
-                                        <a href="#">Dashboard</a>
-                                </li>
-                                <li><i class='bx bx-chevron-right' ></i></li>
-                                <li>
-                                        <a class="active" href="home">Home</a>
-                                </li>
-                        </ul>
                     </div>
                     <a href="#" class="btn-download">
                             <i class='bx bxs-cloud-download' ></i>
@@ -48,21 +31,21 @@
                     <li>
                         <i class='bx bxs-calendar-check' ></i>
                         <span class="text">
-                                <h3>1020</h3>
+                                <h3>${orderCount}</h3>
                                 <p>New Order</p>
                         </span>
                     </li>
                     <li>
                         <i class='bx bxs-group' ></i>
                         <span class="text">
-                                <h3>2834</h3>
+                                <h3>${userCount}</h3>
                                 <p>Visitors</p>
                         </span>
                     </li>
                     <li>
                         <i class='bx bxs-dollar-circle' ></i>
                         <span class="text">
-                                <h3>$2543</h3>
+                                <h3>$${totalRevenue}</h3>
                                 <p>Total Sales</p>
                         </span>
                     </li>
@@ -82,17 +65,20 @@
                             <th>User</th>
                             <th>Date Order</th>
                             <th>Status</th>
+                            <th>Total</th>
                           </tr>
                         </thead>
                         <tbody>
+                          <c:forEach items="${orders}" var="order">
                           <tr>
                             <td>
-                              <img src="img/people.png" />
-                              <p>John Doe</p>
+                              <p>${order.userId}</p>
                             </td>
-                            <td>01-10-2021</td>
-                            <td><span class="status completed">Completed</span></td>
+                            <td>${order.orderDate}</td>
+                            <td><span class="status completed">${order.status}</span></td>
+                            <td>${order.totalPrice}</td>
                           </tr>
+                          </c:forEach>
                         </tbody>
                       </table>
                     </div>
@@ -113,14 +99,47 @@
                           </tr>
                         </thead>
                         <tbody>
+                          <c:forEach items="${products}" var="product">
                           <tr>
                             <td>
-                              <img src="img/people.png" />
+                              <img src="${product.image}" />
                             </td>
-                            <td><p>Tên nè</p></td>
-                            <td><p>Giá  nè</p></td>
-                            <td><p>Doanh thu nè</p></td>
+                            <td><p>${product.name}</p></td>
+                            <td><p>${product.price}</p></td>
+                            <td><p>${product.price}</p></td>
                           </tr>
+                          </c:forEach>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                          
+                <div class="table-data">
+                    <div class="order">
+                      <div class="head">
+                        <h3>Users</h3>
+                      </div>
+                      <table>
+                        <thead>
+                          
+                          <tr>
+                            <th></th>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <c:forEach items="${users}" var="user">
+                          <tr>
+                            <td><p>${user.id}</p></td>
+                            <td><p>${user.name}</p></td>
+                            <td><p>${user.email}</p></td>
+                            <td><p>${user.phone}</p></td>
+                            <td><p>${user.address}</p></td>
+                          </tr>
+                          </c:forEach>
                         </tbody>
                       </table>
                     </div>

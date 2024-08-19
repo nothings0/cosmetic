@@ -57,12 +57,22 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> lstBestSeller = Database.getProductDao().findRandom(16);
-        List<Product> lstTrending = Database.getProductDao().findRandom(16);
         List<Category> lstCategory = Database.getCategoryDAO().findAll();
+        request.setAttribute("lstCategory", lstCategory);
+        
+        List<Product> lstBestSeller = Database.getProductDao().findRandom(8);
+        List<Product> lstTrending = Database.getProductDao().findRandom(4);
+        List<Product> lstNewArrivals = Database.getProductDao().findRandom(4);
+        List<Product> lstTopRated = Database.getProductDao().findRandom(4);
+        List<Product> lstNewProduct = Database.getProductDao().findRandom(8);
+        List<Product> lstDealOfDay = Database.getProductDao().findRandom(2);
         request.setAttribute("lstBestSeller", lstBestSeller);
         request.setAttribute("lstTrending", lstTrending);
-        request.setAttribute("lstCategory", lstCategory);
+        request.setAttribute("lstNewArrivals", lstNewArrivals);
+        request.setAttribute("lstTopRated", lstTopRated);
+        request.setAttribute("lstNewProduct", lstNewProduct);
+        request.setAttribute("lstDealOfDay", lstDealOfDay);
+        
         request.setAttribute("title", "Home Page");
         request.getRequestDispatcher("./views/home.jsp").include(request, response);
     }

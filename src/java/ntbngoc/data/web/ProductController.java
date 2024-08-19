@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ntbngoc.data.dao.Database;
 import ntbngoc.data.model.Category;
 import ntbngoc.data.model.Product;
@@ -67,9 +69,10 @@ public class ProductController extends HttpServlet {
                 getProductDetails(request, response, id);
             } catch (NumberFormatException e) {
                 // Trường hợp id không phải là số nguyên hợp lệ, trả về lỗi
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid product ID");
+                response.sendRedirect("/cosmetic/store");
             }
         }
+        
     }
     
     private void listProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -77,33 +80,75 @@ public class ProductController extends HttpServlet {
         request.setAttribute("listCategory", listCategory);
         List<Product> listProduct = Database.getProductDao().findAll();
         request.setAttribute("listProduct", listProduct);
-        request.getRequestDispatcher("./views/store.jsp").forward(request, response);
+        response.sendRedirect("/cosmetic/store");
     }
     
     private void getProductDetails(HttpServletRequest request, HttpServletResponse response, int productId) throws ServletException, IOException {
 
         Product product = Database.getProductDao().find(productId);
-        List<Product> relateProduct = Database.getProductDao().findRandom(8);
+        List<Product> relateProduct = Database.getProductDao().findByCategory(product.getId_category());
+        Category category = Database.getCategoryDAO().find(product.getId_category());
         request.setAttribute("product", product);
+        request.setAttribute("category", category);
         request.setAttribute("relateProduct", relateProduct);
-        
+        request.setAttribute("title", product.getName());
         request.getRequestDispatcher("./views/product.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        updateDelete(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    void updateDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String action = request.getParameter("action");
+        switch(action){
+            case"create":
+                doCreate(request, response);  break;
+            case"delete":
+                int id_product = Integer.parseInt(request.getParameter("id_product"));
+                doDelete(request, response, id_product);
+                break;
+        }
+        request.getRequestDispatcher("./views/store.jsp").include(request, response);
+    }
+    void doCreate(HttpServletRequest request, HttpServletResponse response){
+        
+        int idCategory = Integer.parseInt(request.getParameter("id_category"));
+        String name = request.getParameter("productName");
+        String image = request.getParameter("image");
+        String description = request.getParameter("description");
+        float discount = Float.parseFloat(request.getParameter("discount"));
+        double price = Double.parseDouble(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        // Tạo đối tượng Product
+        Product product = new Product(name, image, description, discount, price, quantity, idCategory);
+        
+        boolean isInserted = Database.getProductDao().insert(product);
+
+        System.out.println("thanh cong::" + isInserted);
+        
+        if (isInserted) {
+            try {
+                response.sendRedirect(request.getContextPath() + "/admin/store");
+            } catch (IOException ex) {
+                Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            request.setAttribute("errorMessage", "Lỗi thêm sản phẩm, hãy thử lại");
+        }
+    }
+    void doDelete(HttpServletRequest request, HttpServletResponse response, int id_product){
+        boolean isDelete = Database.getProductDao().delete(id_product);
+        try {
+            if(isDelete) {
+                response.sendRedirect(request.getContextPath() + "/admin/store");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

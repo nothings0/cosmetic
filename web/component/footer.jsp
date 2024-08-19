@@ -14,71 +14,41 @@
           </li>
 
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Fashion</a>
+            <a href="#" class="footer-nav-link">Son</a>
           </li>
 
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Electronic</a>
+            <a href="#" class="footer-nav-link">Kem chống nắng</a>
           </li>
 
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Cosmetic</a>
+            <a href="#" class="footer-nav-link">Sữa rửa mặt</a>
           </li>
 
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Health</a>
+            <a href="#" class="footer-nav-link">Mặt nạ</a>
           </li>
 
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Watches</a>
-          </li>
-        </ul>
-
-        <ul class="footer-nav-list">
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Products</h2>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Prices drop</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">New products</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Best sales</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Contact us</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Sitemap</a>
+            <a href="#" class="footer-nav-link">Nước tẩy trang</a>
           </li>
         </ul>
 
         <ul class="footer-nav-list">
           <li class="footer-nav-item">
-            <h2 class="nav-title">Our Company</h2>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Delivery</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Legal Notice</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Terms and conditions</a>
+            <h2 class="nav-title">About</h2>
           </li>
 
           <li class="footer-nav-item">
             <a href="#" class="footer-nav-link">About us</a>
+          </li>
+
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Privacy</a>
+          </li>
+
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Term</a>
           </li>
 
           <li class="footer-nav-item">
@@ -123,7 +93,7 @@
             </div>
 
             <address class="content">
-              419 State 414 Rte Beaver Dams, New York(NY), 14812, USA
+              77 Nguyễn Huệ, Phường Vĩnh Ninh, TP Huế
             </address>
           </li>
 
@@ -133,7 +103,7 @@
             </div>
 
             <a href="tel:+607936-8058" class="footer-nav-link"
-              >(607) 936-8058</a
+              >0989 989 989</a
             >
           </li>
 
@@ -187,7 +157,7 @@
     <div class="footer-bottom">
       <div class="container">
         <p class="copyright">
-          Copyright &copy; <a href="#">Cosmetic</a> all rights reserved.
+          Copyright &copy; <a href="#">Kelly</a> all rights reserved.
         </p>
       </div>
     </div>

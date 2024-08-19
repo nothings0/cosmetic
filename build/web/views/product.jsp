@@ -1,11 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="ntbngoc.utils.API"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>${title}</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -18,55 +19,44 @@
 <body>
     <c:import url="../component/header.jsp" />
     <div class="info_product">
-        <div class="pro_img">
-            <div class="main_img">
-                <img src="${product.image}">
-                <button class="main_pro_sales">
-                    Sale!
-                </button>
-                <button class="find">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
+        <div class="pro_img" style="width: 40%">
+            <img src="${product.image}" style="width: 100%; object-fit: cover">
+            <button class="main_pro_sales">
+                Sale!
+            </button>
         </div>
-        <div class="main_info">
+            <div class="main_info" style="flex: 1">
             <div class="chose_about">
-                <a href="#">Home</a>
-                <p> / </p>
-                <a href="#">Hair Care</a>
-                <p>/ Product Name 1</p>
+                <a href="home">Home</a>
+                <p>/</p>
+                <a href="store?category=${category.id}">${category.name}</a>
+                <p>/${API.getShortName(product.name)}</p>
             </div>
-            <a class="chose_here_a" href="#">Hair Care</a>
             <h1 class="main_info_h1">
                 ${product.name}
             </h1>
             <div class="main_info_pay">
                 <p class="pay_pro_old">
-                    $75.00
-                </p>
-                <p class="pay_pro_new">
                     $${product.price}
                 </p>
-                <p class="promotion">
-                    & Free Shipping
+                <p class="pay_pro_new">
+                    
+                    $${API.discountedPrice(product.price, product.discount)}
                 </p>
             </div>
-<!--            <p class="main_info_text">
-                
-            </p>-->
-            <div class="puschase">
+            <p class="main_info_text" style="margin: 1.5rem 0; line-height: 1.8">
+                ${product.description}
+            </p>
+            <form class="puschase" action="addtocart" method="post">
+                <input type="hidden" name="productId" value="${product.id}">
                 <div class="de_increase">
-                    <button class="decrease_button">-</button>
-                    <input type="text" class="pus_input" value="1">
-                    <button class="increase_button">+</button>
+                    <div class="decrease_button">-</div>
+                    <input type="text" name="quantity" class="pus_input" value="1">
+                    <div class="increase_button">+</div>
                 </div>
-                <button class="pro_addtocart">ADD TO CART</button>
-            </div>
+                <button class="pro_addtocart" type="submit">ADD TO CART</button>
+            </form>
             <hr class="main_info_hr">
-            <div class="category_link">
-                <p class="category">Category:</p>
-                <a class="category_a" href="#">Hair care</a>
-            </div>
         </div>
     </div>
                 
@@ -107,7 +97,7 @@
         </div>
 
         <div class="showcase-content">
-          <a href="#" class="showcase-category">jacket</a>
+          <a href="store?category=${product2.id_category}" class="showcase-category">${category.name}</a>
 
           <a href="product?id=${product2.id}">
             <h3 class="showcase-title">
@@ -124,7 +114,7 @@
           </div>
 
           <div class="price-box">
-            <p class="price">$48.00</p>
+            <p class="price">$${API.discountedPrice(product.price, product.discount)}</p>
             <del>$${product2.price}</del>
           </div>
         </div>
@@ -133,5 +123,8 @@
     </div>
     </div>
 </div>
+    <c:import url="../component/footer.jsp" />
+    
+    <script src="./style/product.js"></script>
 </body>
 </html>

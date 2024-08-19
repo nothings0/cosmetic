@@ -58,7 +58,24 @@ public class CategoryImpl implements CategoryDAO{
 
     @Override
     public Category find(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Category category = null;
+        try {
+            String sql = "SELECT * FROM categories where id = ?";
+            
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            
+            while(rs.next()) {
+                int idP = rs.getInt("id");
+                String name = rs.getString("name");
+                
+               category = new Category(idP, name);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return category;
     }
     
 }

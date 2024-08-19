@@ -1,14 +1,15 @@
 <%@page import="ntbngoc.utils.API"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <header>
       <div class="header-main">
         <div class="container">
-          <a href="#" class="header-logo">
+          <a href="home" class="header-logo">
             <img
-              src="./assets/images/logo/logo.svg"
-              alt="Anon's logo"
-              width="120"
-              height="36"
+              src="./assets/images/logo.png"
+              alt="Cosmetic"
+              width="200"
+              height="50"
             />
           </a>
 
@@ -26,15 +27,28 @@
           </div>
 
           <div class="header-user-actions">
-            <button class="action-btn">
+            <a class="action-btn" href="cart">
               <i class="fa-solid fa-cart-shopping"></i>
-              <span class="count">0</span>
-            </button>
+              <span class="count">${itemCount}</span>
+            </a>
               <c:if test="${user==null}"><a href="login" class="login-button">Login</a></c:if>
         
             <c:if test="${user!=null}">
-            <button class="action-btn">
+            <button class="action-btn user-icon">
                 <i class="fa-regular fa-user"></i>
+                <div class="dropdown-panel">
+                    <ul class="dropdown-panel-list">
+                      <li class="panel-list-item">
+                        <a href="store?category=1">Tài khoản</a>
+                      </li>
+                      <li class="panel-list-item">
+                        <a href="store?category=2">Đơn mua</a>
+                      </li>
+                      <li class="panel-list-item">
+                          <a href="./views/logout.jsp" style="color: red;">Đăng xuất</a>
+                      </li>
+                    </ul>
+                  </div>
             </button>
             </c:if>
             
@@ -46,7 +60,7 @@
         <div class="container">
           <ul class="desktop-menu-category-list">
             <li class="menu-category">
-              <a href="#" class="menu-title">Home</a>
+              <a href="home" class="menu-title">Home</a>
             </li>
             
             <li class="menu-category">
@@ -58,123 +72,23 @@
 
               <div class="dropdown-panel">
                 <ul class="dropdown-panel-list">
-                  <li class="menu-title">
-                    <a href="#">Men's</a>
-                  </li>
-
                   <li class="panel-list-item">
-                    <a href="#">Formal</a>
+                    <a href="store?category=1">Son Môi</a>
                   </li>
-
                   <li class="panel-list-item">
-                    <a href="#">Casual</a>
+                    <a href="store?category=2">Nước Tẩy Trang</a>
                   </li>
-
                   <li class="panel-list-item">
-                    <a href="#">Sports</a>
+                    <a href="store?category=3">Kem Chống Nắng</a>
                   </li>
-
                   <li class="panel-list-item">
-                    <a href="#">Jacket</a>
+                    <a href="store?category=4">Mặt Nạ</a>
                   </li>
-
                   <li class="panel-list-item">
-                    <a href="#">Sunglasses</a>
-                  </li>
-
-                  <li class="panel-list-item">
-                    <a href="#">
-                      <img
-                        src="./assets/images/mens-banner.jpg"
-                        alt="men's fashion"
-                        width="250"
-                        height="119"
-                      />
-                    </a>
-                  </li>
-                </ul>
-
-                <ul class="dropdown-panel-list">
-                  <li class="menu-title">
-                    <a href="#">Women's</a>
-                  </li>
-
-                  <li class="panel-list-item">
-                    <a href="#">Formal</a>
-                  </li>
-
-                  <li class="panel-list-item">
-                    <a href="#">Casual</a>
-                  </li>
-
-                  <li class="panel-list-item">
-                    <a href="#">Perfume</a>
-                  </li>
-
-                  <li class="panel-list-item">
-                    <a href="#">Cosmetics</a>
-                  </li>
-
-                  <li class="panel-list-item">
-                    <a href="#">Bags</a>
-                  </li>
-
-                  <li class="panel-list-item">
-                    <a href="#">
-                      <img
-                        src="./assets/images/womens-banner.jpg"
-                        alt="women's fashion"
-                        width="250"
-                        height="119"
-                      />
-                    </a>
+                    <a href="store?category=5">Sữa Rửa Mặt</a>
                   </li>
                 </ul>
               </div>
-            </li>
-
-            <li class="menu-category">
-              <a href="#" class="menu-title">Men's</a>
-
-              <ul class="dropdown-list">
-                <li class="dropdown-item">
-                  <a href="#">Shirt</a>
-                </li>
-
-                <li class="dropdown-item">
-                  <a href="#">Shorts & Jeans</a>
-                </li>
-
-                <li class="dropdown-item">
-                  <a href="#">Safety Shoes</a>
-                </li>
-
-                <li class="dropdown-item">
-                  <a href="#">Wallet</a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="menu-category">
-              <a href="#" class="menu-title">Women's</a>
-
-              <ul class="dropdown-list">
-                <li class="dropdown-item">
-                  <a href="#">Dress & Frock</a>
-                </li>
-
-                <li class="dropdown-item">
-                  <a href="#">Earrings</a>
-                </li>
-
-                <li class="dropdown-item">
-                  <a href="#">Necklace</a>
-                </li>
-
-                <li class="dropdown-item">
-                  <a href="#">Makeup Kit</a>
-                </li>
-              </ul>
             </li>
 
             <li class="menu-category">
@@ -195,14 +109,6 @@
 
           <span class="count">0</span>
         </button>
-
-        <button class="action-btn">
-          <ion-icon name="home-outline"></ion-icon>
-        </button>
-
-        <button class="action-btn" data-mobile-menu-open-btn>
-          <ion-icon name="grid-outline"></ion-icon>
-        </button>
       </div>
 
       <nav class="mobile-navigation-menu has-scrollbar" data-mobile-menu>
@@ -220,98 +126,8 @@
           </li>
 
           <li class="menu-category">
-            <button class="accordion-menu" data-accordion-btn>
-              <p class="menu-title">Men's</p>
-
-              <div>
-                <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-              </div>
-            </button>
-
-            <ul class="submenu-category-list" data-accordion>
-              <li class="submenu-category">
-                <a href="#" class="submenu-title">Shirt</a>
-              </li>
-
-              <li class="submenu-category">
-                <a href="#" class="submenu-title">Shorts & Jeans</a>
-              </li>
-
-              <li class="submenu-category">
-                <a href="#" class="submenu-title">Safety Shoes</a>
-              </li>
-
-              <li class="submenu-category">
-                <a href="#" class="submenu-title">Wallet</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="menu-category">
-            <button class="accordion-menu" data-accordion-btn>
-              <p class="menu-title">Women's</p>
-
-              <div>
-                <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-              </div>
-            </button>
-
-            <ul class="submenu-category-list" data-accordion>
-              <li class="submenu-category">
-                <a href="#" class="submenu-title">Dress & Frock</a>
-              </li>
-
-              <li class="submenu-category">
-                <a href="#" class="submenu-title">Earrings</a>
-              </li>
-
-              <li class="submenu-category">
-                <a href="#" class="submenu-title">Necklace</a>
-              </li>
-
-              <li class="submenu-category">
-                <a href="#" class="submenu-title">Makeup Kit</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="menu-category">
             <a href="#" class="menu-title">Blog</a>
           </li>
-
-          <li class="menu-category">
-            <a href="#" class="menu-title">Hot Offers</a>
-          </li>
         </ul>
-
-<!--        <div class="menu-bottom">
-          <ul class="menu-social-container">
-            <li>
-              <a href="#" class="social-link">
-                <i class="fa fas-facebook"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-twitter"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-instagram"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-linkedin"></ion-icon>
-              </a>
-            </li>
-          </ul>
-        </div>-->
       </nav>
     </header>

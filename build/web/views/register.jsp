@@ -12,7 +12,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./style/login.css" />
-    <title>Document</title>
+    <title>${title}</title>
   </head>
   <body>
      <div class="container" id="container">

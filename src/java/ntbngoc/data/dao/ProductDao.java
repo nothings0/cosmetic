@@ -16,6 +16,8 @@ public interface ProductDao {
     
     public List<Product> findRandom(int x);
     
+    public List<Product> getProducts(int offset, int limit);
+    
     public boolean insert(Product x);
     
     public boolean update(Product x);
@@ -23,4 +25,8 @@ public interface ProductDao {
     public boolean delete(int id);
     
     public Product find(int id);
+    
+    public List<Product> findByCategory(int id);
+    
+    public int getTotalProducts();
 }

@@ -7,23 +7,42 @@ package ntbngoc.data.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author pv
- */
 public class Cart {
-    private List<Product> items;
+    private List<CartItem> items;
 
     public Cart() {
         items = new ArrayList<>();
     }
 
-    public void addItem(Product product) {
-        items.add(product);
-    }
-
-    public List<Product> getItems() {
+    public List<CartItem> getItems() {
         return items;
     }
+
+    public void addItem(Product product, int quantity) {
+        for (CartItem item : items) {
+            if (item.getProduct().getId() == product.getId()) {
+                item.setQuantity(item.getQuantity() + quantity);
+                return;
+            }
+        }
+        items.add(new CartItem(product, quantity));
+    }
+
+    public void removeItem(int productId) {
+        items.removeIf(item -> item.getProduct().getId() == productId);
+    }
+
+    public double getTotalPrice() {
+        return items.stream().mapToDouble(CartItem::getTotalPrice).sum();
+    }
+    
+    public int getItemCount() {
+        return items.size() ;
+    }
+    
+    public int getTotalQuantity() {
+        return items.stream().mapToInt(CartItem::getQuantity).sum();
+    }
 }
+
 

@@ -10,16 +10,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import ntbngoc.data.dao.Database;
-import ntbngoc.data.model.Order;
-import ntbngoc.data.model.User;
 
 /**
  *
  * @author pv
  */
-public class InvoiceController extends HttpServlet {
+public class ConfirmOrderServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +34,10 @@ public class InvoiceController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InvoiceController</title>");
+            out.println("<title>Servlet ConfirmOrderServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet InvoiceController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ConfirmOrderServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,11 +55,7 @@ public class InvoiceController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Order> orders = Database.getOrderDao().getAllOrders();
-        List<User> users = Database.getUserDao().findAllUsers();
-        request.setAttribute("orders", orders);
-        request.setAttribute("users", users);
-        request.getRequestDispatcher("../views/invoice.jsp").include(request, response);
+        request.getRequestDispatcher("./views/orderConfirmation.jsp").include(request, response);
     }
 
     /**
@@ -77,17 +69,7 @@ public class InvoiceController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int invoiceId = Integer.parseInt(request.getParameter("invoiceId"));
-        String status = request.getParameter("status");
-
-        // Gọi DAO để cập nhật trạng thái hóa đơn
-        boolean success = Database.getOrderDao().updateStatus(invoiceId, status);
-
-        if (success) {
-            response.sendRedirect(request.getContextPath() + "/admin/invoice");
-        } else {
-            request.setAttribute("errorMessage", "Update failed, please try again.");
-        }
+        processRequest(request, response);
     }
 
     /**

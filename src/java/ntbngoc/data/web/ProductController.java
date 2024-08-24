@@ -68,7 +68,6 @@ public class ProductController extends HttpServlet {
                 int id = Integer.parseInt(productId);
                 getProductDetails(request, response, id);
             } catch (NumberFormatException e) {
-                // Trường hợp id không phải là số nguyên hợp lệ, trả về lỗi
                 response.sendRedirect("/cosmetic/store");
             }
         }

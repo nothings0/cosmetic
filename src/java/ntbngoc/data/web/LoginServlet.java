@@ -38,8 +38,10 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("login");
         }
         else
-            if(user.getRole().equals("admin")) response.sendRedirect("admin");
-            else{
+            if(user.getRole().equals("admin")) {
+                request.getSession().setAttribute("user", user);
+                response.sendRedirect("admin");
+            }else{
                 request.getSession().setAttribute("user", user);
                 request.getSession().removeAttribute("error_login");
                 response.sendRedirect("home");

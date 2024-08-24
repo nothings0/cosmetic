@@ -39,7 +39,7 @@
                         <i class='bx bxs-group' ></i>
                         <span class="text">
                                 <h3>${userCount}</h3>
-                                <p>Visitors</p>
+                                <p>Users</p>
                         </span>
                     </li>
                     <li>

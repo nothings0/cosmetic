@@ -60,8 +60,8 @@ public class CheckoutServlet extends HttpServlet {
 
         // Xóa giỏ hàng sau khi thanh toán
         session.removeAttribute("cart");
-
+        session.removeAttribute("itemCount");
         // Chuyển hướng đến trang xác nhận đơn hàng
-        response.sendRedirect("./views/orderConfirmation.jsp");
+        response.sendRedirect("/cosmetic/confirm-order");
     }
 }

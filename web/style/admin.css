@@ -487,14 +487,17 @@ body {
 	border-radius: 20px;
 	font-weight: 700;
 }
-#content main .table-data .order table tr td .status.completed {
+#content main .table-data .order table tr td .status.Pending {
 	background: var(--blue);
 }
-#content main .table-data .order table tr td .status.process {
-	background: var(--yellow);
+#content main .table-data .order table tr td .status.Delivered {
+	background: greenyellow;
 }
-#content main .table-data .order table tr td .status.pending {
-	background: var(--orange);
+#content main .table-data .order table tr td .status.Shipped {
+	background: blue;
+}
+#content main .table-data .order table tr td .status.Canceled {
+	background: #c6c8ca;
 }
 
 
@@ -564,7 +567,7 @@ body {
 .popup {
     display: none; /* Ẩn popup mặc định */
     position: fixed;
-    z-index: 1;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
@@ -578,13 +581,26 @@ body {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    height: 500px;
+    max-height: 500px;
     max-width: 400px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     overflow-y: auto;
 
 }
+
+.popup-content-invoice {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow-y: auto;
+}
+
 
 #addProductForm {
     display: flex;

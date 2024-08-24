@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="ntbngoc.utils.API"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +25,7 @@
                     </div>
                     <a href="#" class="btn-download">
                             <i class='bx bxs-cloud-download' ></i>
-                            <span class="text">Download PDF</span>
+                            <span class="text">Download</span>
                     </a>
                 </div>
 
@@ -41,17 +43,19 @@
                             <th>Date Order</th>
                             <th>Status</th>
                             <th>Total</th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody>
                           <c:forEach items="${orders}" var="order">
-                          <tr>
+                          <tr data-invoice-id="${order.id}">
                             <td>
-                              <p>${order.userId}</p>
+                              <p>${API.getUserEmailById(users, order.userId)}</p>
                             </td>
                             <td>${order.orderDate}</td>
-                            <td><span class="status completed">${order.status}</span></td>
+                            <td><span class="status ${order.status}">${order.status}</span></td>
                             <td>${order.totalPrice}</td>
+                            <td><button class="updateStatusBtn">Update</button></td>
                           </tr>
                           </c:forEach>
                         </tbody>
@@ -59,11 +63,29 @@
                     </div>
                 </div>
             </main>
+            
+            <div id="updateStatusPopup" class="popup">
+                <div class="popup-content">
+                    <span class="close">&times;</span>
+                    <h3>Update Invoice Status</h3>
+                    <form id="updateStatusForm" action="${pageContext.request.contextPath}/admin/invoice" method="post">
+                        <input type="hidden" id="invoiceId" name="invoiceId" value="">
+                        <label for="status">Choose Status:</label>
+                        <select id="status" name="status">
+                            <option value="Pending">Pending</option>
+                            <option value="Shipped">Shipped</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Canceled">Canceled</option>
+                        </select>
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+            </div>
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
 	
 
-	<script src="../style/admin.js"></script>
+	<script src="../style/admin-store.js"></script>
 </body>
 </html>

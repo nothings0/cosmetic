@@ -8,6 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import ntbngoc.data.model.Category;
+import ntbngoc.data.model.User;
 
 public class API {
     public static String getName(String fullname) {
@@ -50,6 +51,15 @@ public class API {
         for (Category category : categories) {
             if (category.getId() == categoryId) {
                 return category.getName();
+            }
+        }
+        return "Beauty"; // Hoặc trả về null nếu bạn không muốn thông báo lỗi
+    }
+    
+    public static String getUserEmailById(List<User> users, int userId) {
+        for (User user : users) {
+            if (user.getId() == userId) {
+                return user.getEmail();
             }
         }
         return "Beauty"; // Hoặc trả về null nếu bạn không muốn thông báo lỗi

@@ -16,4 +16,5 @@ public interface OrderDao {
     int getOrderCount();
     double getTotalRevenue();
     public List<Order> getAllOrders();
+    public boolean updateStatus(int invoiceId, String status);
 }

@@ -155,4 +155,18 @@ public class OrderImpl implements OrderDao{
         }
         return 0;
     }
+
+    @Override
+    public boolean updateStatus(int invoiceId, String status) {
+        String sql = "UPDATE orders SET status = ? WHERE id = ?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, status);
+            stmt.setInt(2, invoiceId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

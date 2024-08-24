@@ -62,7 +62,7 @@
                 
     <div class="product-main">
     <div class="container">
-    <h2 class="title">Best Seller</h2>
+    <h2 class="title">Related Product</h2>
 
     <div class="product-grid">
         <c:forEach items="${relateProduct}" var="product2">
@@ -71,7 +71,7 @@
           <img
             src="${product2.image}"
             alt="${product2.name}"
-            width="300"
+            width="300"9  ggt
             class="product-img default"
           />
 

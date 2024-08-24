@@ -6,14 +6,14 @@
         <div class="slider-item">
           <img
             src="./assets/images/banner.png"
-            alt="women's latest fashion sale"
+            alt="beauty sale"
             class="banner-img"
           />
         </div>
 
         <div class="slider-item">
           <img
-            src="./assets/images/banner-2.jpg"
+            src="./assets/images/banner.jfif"
             alt="modern sunglasses"
             class="banner-img"
           />
